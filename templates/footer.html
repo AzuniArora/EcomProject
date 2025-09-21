@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Footer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<footer style="background-color: #1e1e2f;" class="text-white pt-5">
+  <div class="container">
+    <div class="row text-center text-md-start">
+      <!-- Newsletter & Social -->
+      <div class="col-md-3 mb-5">
+        <h5 class="fw-bold mb-3">Gadget Galaxy</h5>
+        <p class="small">Your one-stop shop for cutting-edge gadgets and accessories. 🚀 Shop smart, stay ahead!</p>
+        <div>
+          <a href="#" class="text-white-50 me-3 fs-5"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-white-50 me-3 fs-5"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-white-50 me-3 fs-5"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+
+      <!-- About -->
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-bold mb-3">About</h5>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'contact' %}" class="text-white-50 text-decoration-none">Contact Us</a></li>
+          <li><a href="{% url 'aboutus' %}" class="text-white-50 text-decoration-none">About Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Help Center -->
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-bold mb-3">Help Center</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-white-50 text-decoration-none">Payment</a></li>
+          <li><a href="#" class="text-white-50 text-decoration-none">Shipping</a></li>
+          <li><a href="{% url 'faq' %}" class="text-white-50 text-decoration-none">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Why Choose Us -->
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-bold mb-3">Why Choose Us</h5>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'aboutus' %}" class="text-white-50 text-decoration-none">Authentic Brands</a></li>
+          <li><a href="#" class="text-white-50 text-decoration-none">24/7 Support</a></li>
+          <li><a href="#" class="text-white-50 text-decoration-none">Easy Returns</a></li>
+          <li><a href="#" class="text-white-50 text-decoration-none">Fast Shipping</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-center py-3 border-top border-secondary mt-4">
+      <small class="text-white-50">&copy; 2025 Gadget Galaxy. All rights reserved.</small>
+    </div>
+  </div>
+
+  <!-- Chat Button -->
+  <button id="chatbot-toggle-button" class="btn btn-lg rounded-pill ps-4 pe-4 a1" style="position: fixed; bottom: 20px; right: 80px; font-size: 18px; background-color: #007bff; color: white; z-index: 9999;">
+    Chat
+  </button>
+
+  <!-- Chatbot -->
+  <div id="chatbot-container">
+    <div style="background-color: #007bff; color: white; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-radius: 10px 10px 0 0;">
+      <strong>Chatbot</strong>
+      <span style="cursor: pointer;" onclick="closeChatbot()">&times;</span>
+    </div>
+    <div id="chat-container"></div>
+    <form id="chat-form" style="background-color: #f7f7f7; padding: 10px; border-top: 1px solid #ccc;">
+      <input type="text" id="user-input" placeholder="Type a message..." required style="width: 78%; padding: 6px 10px; border-radius: 15px; border: 1px solid #ccc;">
+      <button type="submit" style="width: 20%; background-color: #28a745; color: white; border: none; border-radius: 15px;">Send</button>
+    </form>
+  </div>
+</footer>
+
+<!-- Styles for chatbot -->
+<style>
+#chatbot-container {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  height: 420px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+}
+#chat-container {
+  padding: 10px;
+  height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.message {
+  padding: 10px;
+  border-radius: 15px;
+  color: #fff;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+.user-message {
+  align-self: flex-end;
+  background-color: #007bff;
+}
+.bot-message {
+  align-self: flex-start;
+  background-color: #333;
+}
+</style>
+
+<!-- Chatbot Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const chatbotToggle = document.getElementById('chatbot-toggle-button');
+  const chatbotContainer = document.getElementById('chatbot-container');
+
+  chatbotToggle.addEventListener('click', function () {
+    chatbotContainer.style.display = 'block';
+  });
+
+  window.closeChatbot = function () {
+    chatbotContainer.style.display = 'none';
+  }
+
+  const chatForm = document.getElementById('chat-form');
+  chatForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const userInput = document.getElementById('user-input');
+    const message = userInput.value.trim();
+    if (!message) return;
+
+    addMessage(message, 'user-message');
+    userInput.value = '';
+
+    fetch('/chat/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCSRFToken()
+      },
+      body: JSON.stringify({ message: message })
+    })
+    .then(response => response.json())
+    .then(data => addMessage(data.response, 'bot-message'))
+    .catch(error => console.error('Chatbot Error:', error));
+  });
+
+  function addMessage(text, className) {
+    const container = document.getElementById('chat-container');
+    const div = document.createElement('div');
+    div.textContent = text;
+    div.className = `message ${className}`;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  function getCSRFToken() {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+      const [name, value] = cookie.trim().split('=');
+      if (name === 'csrftoken') return decodeURIComponent(value);
+    }
+    return '';
+  }
+});
+</script>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit profile</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css\bootstrap-grid.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  
+
+<style>
+  body{
+    background-image:url("https://wallpapers.com/images/hd/work-background-dk3skbfnse4xq6yi.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+  }
+  
+  </style>
+</head>
+<body>
+      
+     
+    <div class="container ">
+      <div class="row pt-5">
+        <div class="col-md-4"></div>
+         <div class=" col-md-4 mt-5 p-5 " style="border-radius: 50px; box-shadow: 0px 0px 10px black;">
+          <form method="POST">
+            {% csrf_token %}
+            <h1 class="text-center">Edit Profile</h1>
+            
+            <label>First Name:</label>
+             <input type="text" value="{{data.first name}}" name="fn" class="form-control">      
+
+             <label>Last Name:</label>
+             <input type="text" value="{{data.last name}}" name="ln" class="form-control">
+
+             <label>Email:</label>
+             <input type="text" value="{{data.email}}" name="e" class="form-control">
+
+             <label>Phone no.:</label>
+            <input type="text" value="{{data.phone no.}}" name="pn" class="form-control">
+
+            <label>Address:</label>
+            <input type="text" value="{{data.Address}}" name="a" lass="form-control">
+
+            <label>Landmark:</label>
+            <input type="text"  value="{{data.landmark}}"name="lm" class="form-control">
+
+            <label>House/Flat no:</label>
+            <input type="text" value="{{data.house/flat no.}}" name="hf" class="form-control">
+
+            <label>Pincode:</label>
+            <input type="text"  value="{{data.pincode}}"name="p" class="form-control">
+
+            <button type="submit" class="btn btn-danger ps-5 pe-5 mt-3">Submit</button>
+  </form>
+</div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+</body>
+</html>

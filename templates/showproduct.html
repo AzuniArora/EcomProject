@@ -1,0 +1,117 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Available Products - Gadget Galaxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .product-card {
+      transition: all 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+    .product-img {
+      height: 250px;
+      object-fit: contain;
+    }
+    .btn-sm {
+      width: 48%;
+    }
+  </style>
+</head>
+<body>
+
+{% include 'navbarnew.html' %}
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4 text-dark">Explore Our Products</h2>
+
+    <div class="card shadow-sm border-0 p-3 mb-4">
+      <form method="get" class="row gy-2 gx-3 align-items-center">
+        <div class="col-md-5">
+          <input type="text" name="q" class="form-control" placeholder="Search by name..." value="{{ request.GET.q }}">
+        </div>
+
+        <div class="col-md-3">
+          <select name="sort" class="form-select">
+            <option value="">Sort by Price</option>
+            <option value="low" {% if request.GET.sort == 'low' %}selected{% endif %}>Low to High</option>
+            <option value="high" {% if request.GET.sort == 'high' %}selected{% endif %}>High to Low</option>
+          </select>
+        </div>
+
+        <div class="col-md-2 d-grid">
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-filter me-1"></i> Apply
+          </button>
+        </div>
+
+        <div class="col-md-2 d-grid">
+          <a href="{% url 'showproduct' category_name %}" class="btn btn-outline-secondary">
+            <i class="fas fa-times me-1"></i> Remove Filters
+          </a>
+        </div>
+      </form>
+    </div>
+
+    {% if no_results %}
+    <div class="alert alert-warning text-center" role="alert">
+      <strong>No products found</strong> matching your search or filter criteria.
+    </div>
+    {% endif %}
+
+    <div class="row">
+      {% for product in data %}
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card product-card border-0 shadow-sm h-100">
+          <img src="{{ product.image.url }}" class="card-img-top product-img p-3" alt="{{ product.Title }}">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-dark fw-semibold">{{ product.Title }}</h5>
+            <p class="card-text text-muted small">{{ product.description|truncatechars:90 }}</p>
+            <p class="text-primary fw-bold fs-6 mt-auto">₹{{ product.unit_price|floatformat:2|intcomma }}</p>
+          </div>
+          <div class="card-footer bg-white border-0 d-flex justify-content-between gap-2 px-3 pb-3">
+            <a href="{% url 'productdetail' product.category_name.category_name product.Title %}" class="btn btn-outline-primary btn-sm">View Details</a>
+            <form method="POST" action="{% url 'add_to_cart' %}" class="w-100">
+              {% csrf_token %}
+              <input type="hidden" name="product_id" value="{{ product.Title }}">
+              <button type="submit" class="btn btn-success btn-sm">Add to Cart</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<div class="position-fixed bottom-0 end-0 p-3 d-flex flex-column align-items-end" style="z-index: 1030; gap: 10px;">
+  <button onclick="scrollToTop()" class="btn btn-primary shadow rounded-circle d-flex justify-content-center align-items-center" title="Scroll to Top" style="width: 40px; height: 40px;">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <button onclick="scrollToBottom()" class="btn btn-secondary shadow rounded-circle d-flex justify-content-center align-items-center" title="Scroll to Bottom" style="width: 40px; height: 40px;">
+    <i class="fas fa-arrow-down"></i>
+  </button>
+</div>
+
+{% include 'footer.html' %}
+
+<script>
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function scrollToBottom() {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+</script>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

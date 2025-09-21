@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Review & Pay - Gadget Galaxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+{% include 'navbarnew.html' %}
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- LEFT: Order Summary -->
+      <div class="col-lg-8">
+        <div class="card shadow-sm">
+          <div class="card-header bg-white">
+            <h4 class="fw-bold text-primary mb-0"><i class="fa-solid fa-box me-2"></i>Order Summary</h4>
+          </div>
+          <div class="card-body">
+            {% if cart_items %}
+              {% for item in cart_items %}
+              <div class="d-flex justify-content-between border-bottom pb-3 mb-3">
+                <div class="d-flex align-items-center">
+                  <img src="{{ item.product.image.url }}" alt="{{ item.product.Title }}" class="me-3 rounded" width="70" height="70" style="object-fit: cover;">
+                  <div>
+                    <h6 class="mb-1 fw-semibold">{{ item.product.Title }}</h6>
+                    <small class="text-muted">Qty: {{ item.quantity }} | ₹{{ item.product.unit_price|floatformat:2 }}</small>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <span class="fw-bold">₹{{ item.total_price|floatformat:2 }}</span>
+                </div>
+              </div>
+              {% endfor %}
+            {% else %}
+              <div class="alert alert-warning">No items in your cart.</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Shipping & Payment -->
+      <div class="col-lg-4">
+        <!-- Shipping Address -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-white">
+            <h5 class="mb-0 fw-bold"><i class="fa-solid fa-location-dot me-2 text-primary"></i>Shipping Address</h5>
+          </div>
+          <div class="card-body">
+            {% if shipping %}
+              <p class="mb-1">{{ shipping.address }}, {{ shipping.city }}, {{ shipping.state }} - {{ shipping.zip_code }}</p>
+              <p class="text-muted mb-0">Phone: {{ shipping.phone }}</p>
+            {% else %}
+              <div class="alert alert-danger">No shipping address found.</div>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Total + Payment Options -->
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="fw-bold d-flex justify-content-between">
+              Total: <span class="text-success">₹{{ amount }}</span>
+            </h5>
+
+            <!-- Razorpay Button -->
+            <button onclick="payNow()" class="btn btn-success w-100 mt-3 py-2 fs-5">
+              <i class="fa-solid fa-credit-card me-2"></i> Pay with Razorpay
+            </button>
+
+            <!-- Cash on Delivery Button -->
+            <form method="POST" action="{% url 'cod_order' %}">
+              {% csrf_token %}
+              <button class="btn btn-outline-dark w-100 mt-3 py-2 fs-5" type="submit">
+                <i class="fa-solid fa-money-bill-wave me-2"></i> Cash on Delivery
+              </button>
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% include 'footer.html' %}
+
+<!-- Razorpay Script -->
+<script>
+function getCSRFToken() {
+  const cookies = document.cookie.split(';');
+  for (let cookie of cookies) {
+    const [name, value] = cookie.trim().split('=');
+    if (name === 'csrftoken') {
+      return decodeURIComponent(value);
+    }
+  }
+  return '';
+}
+
+function payNow() {
+  var options = {
+    "key": "{{ razorpay_key }}",
+    "amount": {{ amount }} * 100,
+    "currency": "INR",
+    "name": "Gadget Galaxy",
+    "description": "Secure Payment",
+    "handler": function (response) {
+      fetch("/save_payment/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCSRFToken()
+        },
+        body: JSON.stringify({
+          payment_id: response.razorpay_payment_id,
+          amount: {{ amount }} * 100,
+          status: "Success"
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        window.location.href = "/order-history/";
+      })
+      .catch(error => console.error("Payment Error:", error));
+    },
+    "theme": { "color": "#0d6efd" }
+  };
+  var rzp = new Razorpay(options);
+  rzp.open();
+}
+</script>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

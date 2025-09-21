@@ -1,0 +1,192 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - Gadget Galaxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+<!-- Navbar -->
+{% include 'navbarnew.html' %}
+
+<!-- Hero Section (Soft Blue Highlight Box) -->
+<section class="py-5 text-center bg-white border-bottom">
+  <div class="container">
+    <div class="p-4 rounded-4 shadow-sm" style="background-color: #e9f2ff;">
+      <h1 class="display-6 fw-bold text-dark">Welcome to Gadget Galaxy</h1>
+      <p class="lead text-secondary mt-3">
+        Your destination for top-notch gadgets, unbeatable service, and future-ready tech.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Who We Are -->
+<section class="py-5 bg-light text-center">
+  <div class="container">
+    <h2 class="mb-4 text-dark fw-bold">Who We Are</h2>
+    <p class="fs-5 text-muted">
+      At <strong>Gadget Galaxy</strong>, we're more than a store — we're a community of tech lovers. We handpick every product to ensure quality, performance, and value for our customers.
+    </p>
+  </div>
+</section>
+
+<!-- Our Products -->
+<section class="py-5 bg-white text-center">
+  <div class="container">
+    <h2 class="mb-5 text-dark fw-bold">Our Products</h2>
+    <div class="row g-4 justify-content-center">
+      <!-- Product Cards -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <i class="fa-solid fa-camera fa-2x text-primary mb-3"></i>
+            <h5 class="card-title">Cameras</h5>
+            <p class="card-text">Capture moments in ultra HD with the latest cameras.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <i class="fa-solid fa-laptop fa-2x text-primary mb-3"></i>
+            <h5 class="card-title">Laptops</h5>
+            <p class="card-text">Reliable laptops for every need — work, play, and more.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <i class="bi bi-smartwatch fa-2x text-primary mb-3"></i>
+            <h5 class="card-title">Smartwatches</h5>
+            <p class="card-text">Stay connected and track your health in style.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <i class="fa-solid fa-mobile-screen-button fa-2x text-primary mb-3"></i>
+            <h5 class="card-title">Smartphones</h5>
+            <p class="card-text">Explore cutting-edge smartphones built for speed.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <i class="fa-solid fa-headphones fa-2x text-primary mb-3"></i>
+            <h5 class="card-title">Headphones</h5>
+            <p class="card-text">Immerse yourself in crystal-clear audio quality.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="py-5 bg-light text-center">
+  <div class="container">
+    <h2 class="mb-4 text-dark fw-bold">Our Mission & Vision</h2>
+    <p class="fs-5 text-muted"><strong>Mission:</strong> To deliver future-ready gadgets that enhance lives, backed by honest service and real support.</p>
+    <p class="fs-5 text-muted"><strong>Vision:</strong> To be India’s most trusted name in electronics — where technology meets trust.</p>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="py-5 bg-white text-center">
+  <div class="container">
+    <h2 class="mb-5 text-dark fw-bold">Why Choose Us?</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <i class="bi bi-patch-check-fill text-primary fs-1 mb-3"></i>
+            <h5 class="card-title fw-bold">Authentic Brands</h5>
+            <p class="card-text">Only genuine, top-rated gadgets you can trust.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <i class="bi bi-tags-fill text-primary fs-1 mb-3"></i>
+            <h5 class="card-title fw-bold">Affordable Pricing</h5>
+            <p class="card-text">Competitive prices with deals worth grabbing.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <i class="bi bi-headset text-primary fs-1 mb-3"></i>
+            <h5 class="card-title fw-bold">24/7 Support</h5>
+            <p class="card-text">Real humans. Real help. Anytime you need.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <i class="bi bi-truck text-primary fs-1 mb-3"></i>
+            <h5 class="card-title fw-bold">Fast Shipping</h5>
+            <p class="card-text">We deliver quick and pack with care.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <i class="bi bi-arrow-repeat text-primary fs-1 mb-3"></i>
+            <h5 class="card-title fw-bold">Easy Returns</h5>
+            <p class="card-text">Change of mind? We’ve got a simple return process.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="py-5 bg-light text-center">
+  <div class="container">
+    <h2 class="mb-4 text-dark fw-bold">Get in Touch</h2>
+    <p class="fs-5 text-muted">We’d love to hear from you. Reach out for questions, suggestions, or collaboration.</p>
+    <p class="fs-5 text-dark"><strong>Email:</strong> abc@gmail.com</p>
+  </div>
+</section>
+<div class="position-fixed bottom-0 end-0 p-3 d-flex flex-column align-items-end" style="z-index: 1030; gap: 10px;">
+  <!-- Scroll to Top -->
+  <button onclick="scrollToTop()" class="btn btn-primary shadow rounded-circle d-flex justify-content-center align-items-center" title="Scroll to Top" style="width: 40px; height: 40px;">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <!-- Scroll to Bottom -->
+  <button onclick="scrollToBottom()" class="btn btn-secondary shadow rounded-circle d-flex justify-content-center align-items-center" title="Scroll to Bottom" style="width: 40px; height: 40px;">
+    <i class="fas fa-arrow-down"></i>
+  </button>
+</div>
+
+<!-- Footer -->
+{% include 'footer.html' %}
+<script>
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function scrollToBottom() {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+</script>
+
+
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order History - Gadget Galaxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+{% include 'navbarnew.html' %}
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="fw-bold text-center text-primary mb-5">📦 Your Order History</h2>
+
+    {% if payments %}
+      {% for payment in payments %}
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+          <div>
+            <strong>Order ID:</strong> {{ payment.payment_id }}<br>
+            <small class="text-muted">{{ payment.created_at|date:"F j, Y, g:i A" }}</small>
+          </div>
+          <div>
+            <span class="badge {% if payment.status == 'Success' %}bg-success{% else %}bg-danger{% endif %}">
+              {{ payment.status }}
+            </span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            {% for item in payment.items.all %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center">
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.Title }}" width="60" height="60" class="me-3 rounded border" style="object-fit: cover;">
+                <div>
+                  <h6 class="mb-0">{{ item.product.Title }}</h6>
+                  <small class="text-muted">Qty: {{ item.quantity }}</small>
+                </div>
+              </div>
+              <div class="fw-bold">₹{{ item.subtotal }}</div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="card-footer bg-white text-end">
+          <strong>Total Paid:</strong> ₹{{ payment.amount }}
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="alert alert-info text-center">You have not placed any orders yet.</div>
+    {% endif %}
+  </div>
+</section>
+
+{% include 'footer.html' %}
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

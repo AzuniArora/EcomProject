@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>about us page </title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<style>
+         .about-section {
+            padding: 0px 0;
+        }
+        .team-member img {
+            width: 0px;
+            height: 0px;
+            border-radius: 0%;
+            object-fit: cover;
+            margin-bottom: px;
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Gadget Galaxy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="about-section bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Welcome to Gadget Galaxy: Your Universe of Tech</h2>
+                    <p>Discover the latest cameras, laptops,watches,headphones and smartphones. Explore a galaxy of innovation and technology at your fingertips.</p>
+                    <p>At Gadget Galaxy, we're passionate about bringing you the best in consumer electronics. From capturing life's moments with cutting-edge cameras to staying connected with the latest smartphones, we curate a wide selection of top-quality products to meet your digital needs. We believe technology should be accessible, reliable, and exciting.</p>
+                    <a href="#" class="btn btn-primary">Explore Our Products</a>
+                </div>
+                <div class="col-md-6">
+                    <img src="placeholder-gadget.jpg" alt="Gadget Galaxy Image" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section class="about-section">
+        <div class="container">
+            <h2>Our Journey: From Passion to Your Digital Hub</h2>
+            <p>Gadget Galaxy was born from a shared love for technology and a desire to create a seamless online shopping experience. We started [Year] with a simple vision: to offer a comprehensive range of gadgets, from powerful laptops to innovative cameras, all in one place.</p>
+            <p>We've grown from a small startup to a trusted online retailer, thanks to our commitment to quality, customer satisfaction, and staying ahead of the tech curve. We've seen the evolution of mobile technology, the rise of digital photography, and the ever-increasing demand for high-performance laptops. We're proud to be part of that journey.</p>
+            <p>Our experience in the electronics market has allowed us to build strong relationships with leading brands, ensuring you receive genuine products and the latest innovations. We strive to provide a platform where tech enthusiasts and everyday consumers can find the perfect gadget to suit their needs.</p>
+        </div>
+    </section>
+
+     <section class="about-section bg-light">
+        <div class="container">
+            <h2>Our Mission: Empowering Your Digital Lifestyle</h2>
+            <p><strong>Mission Statement:</strong> To provide a vast and reliable selection of high-quality electronics, fostering a seamless and enjoyable shopping experience for our customers, and staying at the forefront of technological innovation.</p>
+            <p><strong>Values:</strong></p>
+            <ul>
+                <li><strong>Quality:</strong> We offer only genuine products from trusted brands, ensuring performance and reliability.</li>
+                <li><strong>Innovation:</strong> We stay up-to-date with the latest tech trends, bringing you cutting-edge gadgets.</li>
+                <li><strong>Customer Satisfaction:</strong> Your happiness is our priority. We're dedicated to providing exceptional customer service.</li>
+                <li><strong>Accessibility:</strong> We believe technology should be accessible to everyone, offering competitive prices and a user-friendly platform.</li>
+                <li><strong>Integrity:</strong> We operate with transparency and honesty, building trust with our customers.</li>
+            </ul>
+        </div>
+    </section>
+
+     <section class="about-section">
+        <div class="container">
+            <h2>Explore Our Galaxy of Gadgets</h2>
+            <p>Whether you're a professional photographer, a mobile gaming enthusiast, or a student seeking a powerful laptop, Gadget Galaxy has something for you.</p>
+            <div class="row">
+                <div class="col-md-3"><strong>Cameras:</strong> Capture every moment with our range of DSLRs, mirrorless cameras, and action cameras from leading brands.</div>
+                <div class="col-md-3"><strong>Laptops:</strong> Boost your productivity and entertainment with our selection of high-performance laptops, ultrabooks, and gaming laptops.</div>
+                <div class="col-md-3"><strong>Watches:</strong> Stay connected and track your fitness goals with our stylish smartwatches.</div>
+                <div class="col-md-3"><strong>Smartphones:</strong> Experience the future in your hand with our selection of the latest smartphones, with advanced features and cutting-edge technology.</div>
+                <div class="col-md-3"><strong>Headphones:</strong>Immerse yourself in your favorite music and padcasts with our premium headphones,offering crystal-clear sound and comfort.</div>
+            </div>
+        </div>
+    </section>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

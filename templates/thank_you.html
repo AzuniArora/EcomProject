@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You - Gadget Galaxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .thank-you-box {
+      background-color: #f8f9fa;
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+{% include 'navbarnew.html' %}
+
+<div class="container my-5">
+  <div class="thank-you-box">
+    <i class="fas fa-check-circle text-success display-4 mb-3"></i>
+    <h2 class="text-success fw-bold">Thank You!</h2>
+    <p class="mt-2 mb-4">Your order has been placed successfully with <strong>Cash on Delivery</strong>.</p>
+    <p class="text-muted">Redirecting you to your order history...</p>
+    <div class="spinner-border text-primary mt-3" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  setTimeout(function() {
+    window.location.href = "/order-history/";
+  }, 3000); // 3 seconds
+</script>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

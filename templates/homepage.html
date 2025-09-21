@@ -1,0 +1,277 @@
+{% include 'navbarnew.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gadget Galaxy - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- Hero Section with Light Background and Image -->
+<section class="py-5" style="background-image: url('https://img.freepik.com/free-photo/shopping-concept-close-up-portrait-young-beautiful-attractive-redhair-girl-smiling-looking-camera_1258-126786.jpg?t=st=1743154594~exp=1743158194~hmac=8e94ba9a66afe918df7ace9555f74a46bc459bbbb780ad20223c7c472b0fa6e9&w=1380'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div class="container text-white" style="background-color: rgba(0, 0, 0, 0.6); padding: 40px; border-radius: 12px; max-width: 800px; margin-right: 50px;">
+        <h1 class="display-4 fw-bold">Welcome to Gadget Galaxy</h1>
+        <p class="lead">Your one-stop shop for smartphones, laptops, smartwatches, and more!</p>
+        <a href="{% url 'showproduct' 'Laptops' %}" class="btn btn-warning btn-lg mt-3 " style="text-align: center;">Shop Now</a>
+    </div>
+</section>
+
+
+<!-- Carousel Section with Brighter Background -->
+<div class="container py-4">
+  <div id="carouselExampleIndicators" class="carousel slide shadow rounded" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    </div>
+    <div class="carousel-inner rounded">
+      <div class="carousel-item active">
+        <img src="https://images.samsung.com/uk/smartphones/galaxy-s25-ultra/images/galaxy-s25-ultra-features-kv.jpg?imbypass=true" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Slide 1">
+      </div>
+     <div class="carousel-item">
+    <img src="https://www.ecselectronics.com/cdn/shop/files/4_8b476237-bd57-46dd-96d2-7335a1bd6501.png?v=1728986993"
+         class="d-block w-100"
+         style="height: 400px; width: 100%; object-fit: contain; object-position: center; background-color: #000;"
+         alt="Slide 2">
+</div>
+
+      <div class="carousel-item">
+        <img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/e6d930df-9aa8-4b9d-b26e-31651256a5aa.__CR0,0,1464,600_PT0_SX1464_V1___.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Slide 3">
+      </div>
+      <div class="carousel-item">
+        <img src="https://p1-ofp.static.pub/ShareResource/na/faqs/img/lenovo-laptops-small-banner.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Slide 4">
+      </div>
+      <div class="carousel-item">
+        <img src="https://www.mynikonlife.co.nz/cdn/shop/collections/overview-hero-xl_7bf75699-df0e-4d84-a3c5-1b5f1cf920e4.webp?v=1690754664&width=2600" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Slide 5">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+
+<!-- Top Deals Section -->
+<section class="py-5">
+    <div class="container">
+        <h3 class="fw-bold mb-4">Top Deals</h3>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            <div class="col">
+                <div class="card h-100">
+                     <a href="{% url 'productdetail' 'Camera\'s' 'Sony Alpha a7 III Mirrorless Digital Camera' %}">
+                    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcShDgmdQszEAz-BDob5g-rbVZzHhIH5p_OpCKDop_DSe97I_LgQK6YUmpCOdFzhdF1cf86TJA1Mf3fYLN0mp7_5ummyHxsH8lMaswX2sXgogcysA7D5JZJhQGs&usqp=CAE" class="card-img-top" alt="Deal 1"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">Sony PlayStation VR2</h5>
+                        <p class="card-text">Escape into thrilling new world</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <a 
+                    href="{% url 'productdetail' name='Explore more' title='DJI FPV Combo Drone Camera with FPV goggles' %}">
+                    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRPmEs16NkNa8pZwMr4ddGgvSXRqn-KyOXgXtxwSZYRnXxaNQ2uoXONjzG4n9HlUDHa-FSxb2-CkPvV_uwLAj0gPhax5RA0Xrsw8qqK_VHAy5cxUuXRd4fp&usqp=CAE" class="card-img-top" alt="Deal 2"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">DJI FPV Drone</h5>
+                        <p class="card-text">Experience immersive aerial adventures</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <a href="{% url 'productdetail' name='Explore more' title='Smart Speaker with Alexa (Black)' %}">
+                    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSxhw5sDjU6yfvhr7r8Bh9rUyeuh9wds5Xy2LLq7pGM4RdgsLAG52brBLbR7j-YfAhOjq_P4NquBuV-TaQVrL0pf3tKsSjGRlbm2mnpLg8pqPNoH7cG2Dtuw1I&usqp=CAE" class="card-img-top" alt="Deal 5"></a>
+                    <div class="card-body">
+                     
+                        <h5 class="card-title">Alexa</h5>
+                        <p class="card-text">Portable sound, powerful experience.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+<a href="{% url 'productdetail' name='Camera\'s' title='Sony Alpha a7 III Mirrorless Digital Camera' %}">
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2023/12/370986854/PB/HT/VN/881945/sony-a7-dslr-camera-500x500.jpg" class="card-img-top" alt="Deal 4">
+                    <div class="card-body"></a>
+                        <h5 class="card-title">DSLR Camera</h5>
+                        <p class="card-text">Capture the world with clarity.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <a href="{% url 'showproduct' 'Mobile Phones' %}">
+                    <img src="https://rukminim2.flixcart.com/image/850/1000/xif0q/mobile/1/x/3/-original-imah8pdnxdwzazyy.jpeg?q=90&crop=false" class="card-img-top" alt="Deal 5">
+                    <div class="card-body"></A>
+                        <h5 class="card-title">Samsung S25 Ultra</h5>
+                        <p class="card-text">Portable sound, powerful experience.</p>
+                    </div>
+                </div>
+            </div>
+             <div class="col">
+                <div class="card h-100">
+                    <a href="{% url 'showproduct' 'Laptops'%}">
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2024/11/466527602/EK/YN/RJ/163377091/hp-omen-16-wf1096tx-gaming-laptop-1000x1000.jpg" class="card-img-top" alt="Deal 3">
+                    <div class="card-body"></a>
+                      <br></br>
+                        <h5 class="card-title">Gaming Laptop</h5>
+                        <p class="card-text">Built for performance and play.</p>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col">
+                <div class="card h-100">
+                    <a href="{% url 'showproduct' "Smart Watch's" %}">
+                    <img src="https://m.media-amazon.com/images/I/61+wwNBP7aL.jpg" class="card-img-top" alt="Deal 5"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">Ladies Smartwatch</h5>
+                        <p class="card-text">Portable sound, powerful experience.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <a href="{% url 'showproduct' 'Mobile Phones' %}">
+                    <img src="https://www.91-cdn.com/hub/wp-content/uploads/2024/09/Apple-iPhone-Flipkart-deals.png" class="card-img-top" alt="Deal 6"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">Iphone 16</h5>
+                        <p class="card-text">Perfect for work and play on-the-go.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Top Categories -->
+<section class="py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Shop Top Categories</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Smartphones & Tablets</h5>
+                        <p class="card-text">Latest iPhones, Samsung Galaxy, OnePlus, and more.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Laptops & Computers</h5>
+                        <p class="card-text">Powerful machines for gaming, work, and study.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Audio Devices</h5>
+                        <p class="card-text">Earbuds, headphones, and portable speakers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5">💡 Why Shop at Gadget Galaxy?</h2>
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <ul class="list-group list-group-flush fs-5">
+          <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> Massive collection from global brands</li>
+          <li class="list-group-item"><i class="bi bi-lock-fill text-primary me-2"></i> Secure & trusted payment system</li>
+          <li class="list-group-item"><i class="bi bi-arrow-counterclockwise text-warning me-2"></i> Easy returns & live support</li>
+          <li class="list-group-item"><i class="bi bi-gift-fill text-danger me-2"></i> Exclusive deals & festive offers</li>
+          <li class="list-group-item"><i class="bi bi-house-door-fill text-secondary me-2"></i> Smart home & lifestyle gadgets</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <img src="https://static.vecteezy.com/system/resources/previews/005/863/142/non_2x/great-deal-label-icon-illustration-red-banner-with-thumbs-up-and-stars-free-vector.jpg" class="img-fluid rounded shadow" alt="Why Shop">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-5">💳 Flexible Payment Options</h2>
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="border p-4 rounded shadow-sm">🪪 Credit & Debit Cards</div>
+      </div>
+      <div class="col-md-3">
+        <div class="border p-4 rounded shadow-sm">🏦 Net Banking & UPI</div>
+      </div>
+      <div class="col-md-3">
+        <div class="border p-4 rounded shadow-sm">📱 Digital Wallets</div>
+      </div>
+      <div class="col-md-3">
+        <div class="border p-4 rounded shadow-sm">📦 Cash on Delivery</div>
+      </div>
+    </div>
+    <div class="mt-5">
+      <h5 class="fw-bold">🎉 No Cost EMI Available</h5>
+      <p class="text-muted">Pay in easy monthly installments — with zero extra charges!</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="py-5 bg-dark text-white">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-3">🚚 Fast & Reliable Delivery</h2>
+    <p class="lead mb-0">Track your orders in real-time and enjoy express delivery across India.</p>
+  </div>
+</section>
+
+
+<!-- Call to Action -->
+<section class="text-center py-5">
+    <div class="container">
+        <h2>Ready to Shop the Latest Gadgets?</h2>
+        <p class="mb-4">Join Gadget Galaxy and elevate your digital lifestyle today.</p>
+        <a href="{% url 'showproduct' 'Mobile Phones' %}" class="btn btn-primary btn-lg">Start Shopping</a>
+    </div>
+</section>
+<div class="position-fixed bottom-0 end-0 p-3 d-flex flex-column align-items-end" style="z-index: 1030; gap: 10px;">
+  <!-- Scroll to Top -->
+  <button onclick="scrollToTop()" class="btn btn-primary shadow rounded-circle d-flex justify-content-center align-items-center" title="Scroll to Top" style="width: 40px; height: 40px;">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <!-- Scroll to Bottom -->
+  <button onclick="scrollToBottom()" class="btn btn-secondary shadow rounded-circle d-flex justify-content-center align-items-center" title="Scroll to Bottom" style="width: 40px; height: 40px;">
+    <i class="fas fa-arrow-down"></i>
+  </button>
+</div>
+{% include 'footer.html' %}
+<script>
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function scrollToBottom() {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,123 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart - Gadget Galaxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .cart-item {
+      border-bottom: 1px solid #dee2e6;
+      padding: 1rem 0;
+    }
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    .product-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .btn-sm {
+      padding: 0.3rem 0.6rem;
+    }
+    .summary-box {
+      background-color: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.03);
+    }
+  </style>
+</head>
+<body>
+
+{% include 'navbarnew.html' %}
+
+<div class="container my-5">
+  <h3 class="text-center mb-4 text-primary"><i class="fas fa-shopping-cart me-2"></i>Your Cart</h3>
+
+  {% if cart_items %}
+  <div class="row">
+    <!-- Cart Items -->
+    <div class="col-lg-8">
+      {% for item in cart_items %}
+      <div class="cart-item d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-3">
+          <img src="{{ item.product.image.url }}" class="product-img" alt="{{ item.product.Title }}">
+          <div>
+            <h6 class="mb-1">{{ item.product.Title }}</h6>
+            <p class="mb-1 text-muted">₹{{ item.product.unit_price|floatformat:2|intcomma }}</p>
+            <form method="POST" action="{% url 'remove_from_cart' item.product.Title %}">
+              {% csrf_token %}
+              <button class="btn btn-sm btn-outline-danger">Remove</button>
+            </form>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <form method="POST" action="{% url 'decrement_quantity' item.product.Title %}">
+            {% csrf_token %}
+            <button class="btn btn-outline-secondary btn-sm me-2"><i class="fas fa-minus"></i></button>
+          </form>
+          <span class="fw-bold">{{ item.quantity }}</span>
+          <form method="POST" action="{% url 'increment_quantity' item.product.Title %}">
+            {% csrf_token %}
+            <button class="btn btn-outline-secondary btn-sm ms-2"><i class="fas fa-plus"></i></button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Summary -->
+    <div class="col-lg-4">
+      <div class="summary-box">
+        <h5 class="fw-bold">Order Summary</h5>
+        <hr>
+        <p class="d-flex justify-content-between">
+          <span>Total:</span>
+          <span class="fw-bold text-primary">₹{{ overall_total|floatformat:2|intcomma }}</span>
+        </p>
+
+        {% if shipping %}
+        <p class="small text-muted mb-1">Shipping to:</p>
+        <p class="small">{{ shipping.address }}, {{ shipping.city }} - {{ shipping.zip_code }}</p>
+        {% endif %}
+
+        <div class="d-grid mt-3">
+          <a href="{% url 'select_shipping' %}" class="btn btn-success">
+            <i class="fas fa-arrow-right me-1"></i> Proceed to Checkout
+          </a>
+          <a href="{% url 'homepage' %}" class="btn btn-outline-primary mt-2">
+            <i class="fas fa-arrow-left me-1"></i> Continue Shopping
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Clear Cart -->
+  <div class="text-center mt-4">
+    <form method="POST" action="{% url 'clear_cart' %}">
+      {% csrf_token %}
+      <button class="btn btn-outline-danger btn-sm">
+        <i class="fas fa-trash me-1"></i> Clear Cart
+      </button>
+    </form>
+  </div>
+
+  {% else %}
+    <div class="text-center p-5 bg-light rounded shadow-sm">
+      <h4 class="text-muted">Your cart is empty</h4>
+      <a href="{% url 'homepage' %}" class="btn btn-primary mt-3">Start Shopping</a>
+    </div>
+  {% endif %}
+</div>
+
+{% include 'footer.html' %}
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
